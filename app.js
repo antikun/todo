@@ -1,23 +1,27 @@
 let command = prompt("What would you like to do?");
 
-let toDo = [];
+const toDo = [];
 
-while (command !== "quit" || command !== null) {
+while (command !== "quit" && command != null) {
     if (command === "new") {
-        command = prompt("Enter new todo");
-        toDo.push(command);
-        console.log(`${toDo} added to list`);
+        const newToDo = prompt("Enter new todo:");
+        toDo.push(newToDo);
+        console.log(`${newToDo} added to the list.`);
     } else if (command === "list") {
         console.log("*************")
-        for (i = 0; i < toDo.length; i++) {
+        for (let i = 0; i < toDo.length; i++) {
             console.log(`${i}: ${toDo[i]}`);
         }
-        console.log("*************")
+        console.log("*************");
     } else if (command === "delete") {
-        command = prompt("Enter index of todo to remove");
-        toDo.splice(command, 1);
-        console.log("Todo removed");
+        const delToDo = parseInt(prompt("Enter index of todo to remove:"));
+        if (!Number.isNaN(delToDo)) {
+            const deleted = toDo.splice(delToDo, 1);
+            console.log(`${deleted} was deleted.`);
+        } else {
+            console.log("Enter a valid number.");
+        }
     }
-    command = prompt("What would you do?");
+    command = prompt("What would you like to do?");
 }
 console.log("OK, YOU QUIT THE APP");
